@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Lista de Proyectos</h1>
+    <div class="text-right">
+        <form action="{% url 'proyecto_busqueda' %}" method="GET">
+            <input type="text" name="q" placeholder="Buscar Proyecto" />
+            <input type="submit" class="btn btn-primary" value="Buscar" />
+        </form>
+    </div>
+
+    <hr>
+    {% if object_list %}
+    <ul>
+        {% for proyecto in object_list %}
+        <div class="list-group">
+            <a href="{% url 'proyecto-detail' proyecto.pk %}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ proyecto.nombre }}</h4>
+              <p class="list-group-item-text">{{ proyecto.modulo }}</p>
+            </a>
+          </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <P>No existen proyectos dados de alta</P>
+    {% endif %}
+    <hr>
+    <p><a href="{% url 'proyecto_create' %}" class="btn btn-primary" role="button">Crear Proyecto</a></p>
+{% endblock %}

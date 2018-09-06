@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<table class="table table-striped">
+    <tr>
+        <td><strong>Nombre</strong></td>
+        <td><strong>Módulo</strong></td>
+        <td><strong>Descripción</strong></td>
+        <td><strong>Notas</strong></td>
+        <td><strong>Fecha de Creación</strong></td>
+    </tr>
+    {% for proyecto in proyectos %}
+    <tr>
+        <td>{{ proyecto.nombre }}</td>
+        <td>{{ proyecto.modulo }}</td>
+        <td>{{ proyecto.descripcion }}</td>
+        <td>{{ proyecto.notas }}</td>
+        <td>{{ proyecto.creado }}</td>
+        <td>
+            <a href="{% url 'proyecto-detail' proyecto.pk %}" class="btn btn-primary">Detalles</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

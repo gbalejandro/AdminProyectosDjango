@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p><strong>Su Usuario o Password no son los correctos. Intente nuevamente.</strong></p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p><h4><strong>Su cuenta no tiene acceso a esta página. Para entrar, por favor ingrese con otra cuenta.</strong></h4></p>
+    {% else %}
+    <p><h4><strong>Por favor ingrese sus credenciales para entrar al sistema.</strong></h4></p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div class="row text-center">
+  <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+          <p></p><label for="{{ form.username.name }}">{{ form.username.label }}</label></p>
+          {{ form.username }}
+      </div>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+          <p><label for="{{ form.password.name }}">{{ form.password.label }}</label></p>  
+          {{ form.password }}
+      </div>
+  </div>
+</div>
+<div class="text-center">
+  <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+          <input type="submit" value="Ingresar" class="btn btn-primary" />
+          <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+        <p><h5><strong><a href="{% url 'password_reset' %}">Olvidó su password?</strong></h5></a></p>
+    </div>
+  </div>
+</div>
+</form>
+
+{% endblock %}

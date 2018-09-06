@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+  <h1>Nombre: {{ proyecto.nombre }}</h1>
+
+  <p><strong>Módulo:</strong> {{ proyecto.modulo }}</p>
+  <p><strong>Descripción:</strong> {{ proyecto.descripcion }}</p>
+  <p><strong>Notas:</strong> {{ proyecto.notas }}</p> 
+  <p><strong>Creado por:</strong> {{ proyecto.creado_por }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <div class="text-right">
+      <a href="{% url 'desarrollo_create' proyecto.pk %}" class="btn btn-primary" role="button">Crear Desarrollo</a>
+    </div>
+    <hr>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <td>#</td>
+          <td>Versión</td>
+          <td>Consultas Relevantes:</td>
+          <td>Información del Desarrollo:</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detalle in proyecto.desarrollo_set.all %}
+        <tr>
+          <td>{{detalle.id}}</td>
+          <td>{{ detalle.version}}</td>
+          <td>{{ detalle.consultas}}</td>
+          <td>{{ detalle.informacion}}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'desarrollo_update' detalle.id %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'desarrollo_delete' detalle.id %}">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

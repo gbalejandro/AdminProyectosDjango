@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class=""row>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="{{ form.proyecto.name }}">{{ form.proyecto.label }}</label>
+                {{ form.proyecto }}
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="{{ form.version.name }}">{{ form.version.label }}</label>
+                {{ form.version }}
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="{{ form.consultas.name }}">{{ form.consultas.label }}</label>
+                {{ form.consultas }}
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="{{ form.informacion.name }}">{{ form.informacion.label }}</label>
+                {{ form.informacion }}
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="{{ form.estatus.name }}">{{ form.estatus.label }}</label>
+                {{ form.estatus }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
